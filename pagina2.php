@@ -9,16 +9,15 @@ ingrese su email
 <input type="text" name="email">
 <br>
 seleccione curso
-<select name="codigocurso">
+<br>
 <?php
 $conexion = mysqli_connect("localhost","root","","base1") or die("error de conexion");
 $registrar = mysqli_query($conexion,"select codigo,nombrecurso from cursos ") 
 or die("problemas en el insert".mysqli_error($conexion));
 while($reg=mysqli_fetch_array($registrar)){
-echo "<option value=\"$reg[codigo]\">$reg[nombrecurso]</option>";
+echo "<input type=\"radio\" name=\"radio1\" value=\"$reg[codigo]\">".$reg['nombrecurso']."<br>";
 }
 ?>
-</select>
 <br>
 <input type="submit" value="registrar">
 </form>
