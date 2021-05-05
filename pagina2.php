@@ -1,28 +1,26 @@
 <html>
 <head></head>
 <body>
-<?php
-$conexion =mysqli_connect("localhost","root","","base1") or die("fallo la conexion");
-$registros =mysqli_query($conexion,"select * from cursos where codigo='$_REQUEST[codigo]'") or die
-("error en el select :".mysqli_error($conexion));
-if($reg = mysqli_fetch_array($registros)){
-?>
 <form action="pagina3.php" method="post">
-ingrese su nuevo curso
-<input type="text" name="nombrecurso" value="<?php echo$reg['nombrecurso']?>">
+ingrese nombre
+<input type="text" name="nombre" size="20">
 <br>
-<input type="hidden" name="codigo" value="<?php echo$reg['codigo']?>">
+ingrese su email
+<input type="text" name="email">
 <br>
-<input type="submit" value="modificar">
-
-</form>
+seleccione curso
+<select name="codigocurso">
 <?php
-}else{
-
-echo "no existe el curso con dicho mail";
-
+$conexion = mysqli_connect("localhost","root","","base1") or die("error de conexion");
+$registrar = mysqli_query($conexion,"select codigo,nombrecurso from cursos ") 
+or die("problemas en el insert".mysqli_error($conexion));
+while($reg=mysqli_fetch_array($registrar)){
+echo "<option value=\"$reg[codigo]\">$reg[nombrecurso]</option>";
 }
-
-  ?>
+?>
+</select>
+<br>
+<input type="submit" value="registrar">
+</form>
 </body>
 </html> 

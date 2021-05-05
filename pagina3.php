@@ -5,15 +5,15 @@
 </head>
 <body>
   <?php
-$conexion =mysqli_connect("localhost","root","","base1") or die("error de conexion".mysqli_error($conexion));
-$registros=mysqli_query($conexion,"update cursos 
-                                    set nombrecurso='$_REQUEST[nombrecurso]'
-                                    where codigo='$_REQUEST[codigo]'")or die
-                                    ("error en el update:".mysqli_error($conexion));
-echo "el curso fue modificado";
+$conexion =mysqli_connect("localhost","root","","base1") or die("error de conexion");
+mysqli_query($conexion,"insert into alumnos(nombre,mail,codigocurso)
+values('$_REQUEST[nombre]','$_REQUEST[email]','$_REQUEST[codigocurso]')") 
+or die("error en el insert ".mysqli_error($conexion));
+mysqli_close($conexion);
+echo "el alumno fue registrado"
 
 
 
-  ?>  
+?>  
 </body>
 </html>
